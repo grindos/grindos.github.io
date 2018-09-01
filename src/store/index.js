@@ -4,6 +4,18 @@ import reducer from '../reducers';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware())(createStore);
 
-const store = createStoreWithMiddleware(reducer);
+const persistedState = {
+  visibilityFilter: 'SHOW_ALL',
+  streams: [
+    { id: 'esl_sc2' },
+    { id: 'ogamingsc2' },
+    { id: 'cretetion' },
+    { id: 'freecodecamp' },
+    { id: 'daigothebeastv' },
+  ],
+  loading: true,
+};
+
+const store = createStoreWithMiddleware(reducer, persistedState);
 
 export default store;
