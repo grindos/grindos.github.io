@@ -1,3 +1,5 @@
+import { SET_VISIBILITY_FILTER, LOAD_STREAMS_DATA_PENDING, LOAD_STREAMS_DATA_FULFILLED } from './constants';
+
 const defaultState = {
   visibilityFilter: 'SHOW_ALL',
   streams: [],
@@ -6,17 +8,17 @@ const defaultState = {
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'SET_VISIBILITY_FILTER':
+    case SET_VISIBILITY_FILTER:
       return {
         ...state,
         visibilityFilter: action.filter,
       };
-    case 'LOAD_STREAMS_DATA_PENDING':
+    case LOAD_STREAMS_DATA_PENDING:
       return {
         ...state,
         loading: true,
       };
-    case 'LOAD_STREAMS_DATA_FULFILLED':
+    case LOAD_STREAMS_DATA_FULFILLED:
       const streams = action.payload.map(stream => {
         const channelData = stream[0].data;
         const streamData = stream[1].data;

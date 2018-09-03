@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Stream from './Stream';
 import loadStreamsData from './actions';
+import { SHOW_ALL, SHOW_ONLINE, SHOW_OFFLINE } from '../../../constants';
 
 const getVisibleStreams = (streams, filter) => {
   switch (filter) {
-    case 'SHOW_ALL':
+    case SHOW_ALL:
       return streams;
-    case 'SHOW_ONLINE':
+    case SHOW_ONLINE:
       return streams.filter(stream => stream.status !== 'offline');
-    case 'SHOW_OFFLINE':
+    case SHOW_OFFLINE:
       return streams.filter(stream => stream.status === 'offline');
     default:
       return [];

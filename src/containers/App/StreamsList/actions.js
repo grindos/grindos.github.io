@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { LOAD_STREAMS_DATA } from '../../../constants';
 
 const loadStreamsData = streams => {
   const data = streams.map(stream => Promise.all([
@@ -6,7 +7,7 @@ const loadStreamsData = streams => {
     axios.get(`https://wind-bow.glitch.me/twitch-api/streams/${stream.id}`),
   ]));
   return ({
-    type: 'LOAD_STREAMS_DATA',
+    type: LOAD_STREAMS_DATA,
     payload: Promise.all(data),
   });
 };
