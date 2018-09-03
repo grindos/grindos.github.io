@@ -7,13 +7,15 @@ const defaultState = {
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
-      return Object.assign({}, state, {
+      return {
+        ...state,
         visibilityFilter: action.filter,
-      });
+      };
     case 'LOAD_STREAMS_DATA_PENDING':
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loading: true,
-      });
+      };
     case 'LOAD_STREAMS_DATA_FULFILLED':
       const streams = action.payload.map(stream => {
         const channelData = stream[0].data;
@@ -25,10 +27,11 @@ const reducer = (state = defaultState, action) => {
           userpic: channelData.logo,
         };
       });
-      return Object.assign({}, state, {
+      return {
+        ...state,
         streams,
         loading: false,
-      });
+      };
     default:
       return state;
   }
