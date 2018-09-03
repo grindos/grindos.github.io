@@ -15,15 +15,10 @@ const StatusOption = ({ onClick, children }) => (
     {children}
   </button>
 );
-
 StatusOption.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.string,
 };
-
-const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === state.visibilityFilter,
-});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onClick: () => {
@@ -31,4 +26,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StatusOption);
+export default connect(null, mapDispatchToProps)(StatusOption);
