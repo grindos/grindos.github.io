@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Stream from './Stream';
-import { loadUserData, loadStreamData, loadReady } from './actions';
+import loadStreamsData from './actions';
 
 const getVisibleStreams = (streams, filter) => {
   switch (filter) {
@@ -19,12 +19,8 @@ const getVisibleStreams = (streams, filter) => {
 
 class StreamsList extends Component {
   componentDidMount() {
-    const { streams, getUserData, getStreamData, setReady } = this.props;
-    streams.forEach(stream => {
-      getUserData(stream.id);
-      getStreamData(stream.id);
-    });
-    setReady();
+    const { streams, getStreamsData } = this.props;
+    getStreamsData(streams);
   }
 
   render() {
@@ -53,9 +49,7 @@ class StreamsList extends Component {
 }
 StreamsList.propTypes = {
   streams: PropTypes.array,
-  getUserData: PropTypes.func,
-  getStreamData: PropTypes.func,
-  setReady: PropTypes.func,
+  getStreamsData: PropTypes.func,
   loading: PropTypes.bool,
 };
 
@@ -65,14 +59,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getUserData: id => {
-    dispatch(loadUserData(id));
-  },
-  getStreamData: id => {
-    dispatch(loadStreamData(id));
-  },
-  setReady: () => {
-    dispatch(loadReady());
+  getStreamsData: streams => {
+    dispatch(loadStreamsData(streams));
   },
 });
 

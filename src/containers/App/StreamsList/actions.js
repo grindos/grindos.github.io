@@ -1,21 +1,14 @@
 import axios from 'axios';
 
-export const loadUserData = id => ({
-  type: 'LOAD_USER_DATA',
-  payload: axios.get(`https://wind-bow.glitch.me/twitch-api/users/${id}`),
-  meta: {
-    id,
-  },
-});
+const loadStreamsData = streams => {
+  const data = streams.map(stream => Promise.all([
+    axios.get(`https://wind-bow.glitch.me/twitch-api/channels/${stream.id}`),
+    axios.get(`https://wind-bow.glitch.me/twitch-api/streams/${stream.id}`),
+  ]));
+  return ({
+    type: 'LOAD_STREAMS_DATA',
+    payload: Promise.all(data),
+  });
+};
 
-export const loadStreamData = id => ({
-  type: 'LOAD_STREAM_DATA',
-  payload: axios.get(`https://wind-bow.glitch.me/twitch-api/streams/${id}`),
-  meta: {
-    id,
-  },
-});
-
-export const loadReady = () => ({
-  type: 'LOAD_READY',
-});
+export default loadStreamsData;
