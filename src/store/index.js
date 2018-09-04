@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
+import thunk from 'redux-thunk';
 import reducer from '../reducers';
 import { SHOW_ALL } from '../constants';
 
-const createStoreWithMiddleware = applyMiddleware(promiseMiddleware())(createStore);
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware(), thunk)(createStore);
 
 const persistedState = {
   visibilityFilter: SHOW_ALL,

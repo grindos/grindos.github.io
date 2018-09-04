@@ -3,20 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Stream from './Stream';
 import loadStreamsData from './actions';
-import { SHOW_ALL, SHOW_ONLINE, SHOW_OFFLINE } from '../../../constants';
-
-const getVisibleStreams = (streams, filter) => {
-  switch (filter) {
-    case SHOW_ALL:
-      return streams;
-    case SHOW_ONLINE:
-      return streams.filter(stream => stream.status !== 'offline');
-    case SHOW_OFFLINE:
-      return streams.filter(stream => stream.status === 'offline');
-    default:
-      return [];
-  }
-};
+import { getVisibleStreams, getLoading } from './selectors';
 
 class StreamsList extends Component {
   componentDidMount() {
@@ -55,14 +42,12 @@ StreamsList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  streams: getVisibleStreams(state.streams, state.visibilityFilter),
-  loading: state.loading,
+  streams: getVisibleStreams(state),
+  loading: getLoading(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  getStreamsData: streams => {
-    dispatch(loadStreamsData(streams));
-  },
-});
+const mapDispatchToProps = {
+  getStreamsData: loadStreamsData,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(StreamsList);
