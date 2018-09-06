@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import setVisibilityFilter from './actions';
+import { setVisibilityFilter } from '../../actions';
 
 const StatusOption = ({ onClick, children, filter }) => (
   <button

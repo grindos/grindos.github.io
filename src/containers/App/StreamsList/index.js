@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Stream from './Stream';
-import loadStreamsData from './actions';
+import { loadStreamsData } from '../actions';
 import { getVisibleStreams, getLoading } from './selectors';
 
 class StreamsList extends Component {

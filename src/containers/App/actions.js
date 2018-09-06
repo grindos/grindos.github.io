@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { LOAD_STREAMS_DATA } from '../../../constants';
+import { SET_VISIBILITY_FILTER, LOAD_STREAMS_DATA } from '../../constants';
 
-const loadStreamsData = streams => {
+export const loadStreamsData = streams => {
   const data = streams.map(stream => Promise.all([
     axios.get(`https://wind-bow.glitch.me/twitch-api/channels/${stream.id}`),
     axios.get(`https://wind-bow.glitch.me/twitch-api/streams/${stream.id}`),
@@ -12,4 +12,7 @@ const loadStreamsData = streams => {
   });
 };
 
-export default loadStreamsData;
+export const setVisibilityFilter = filter => ({
+  type: SET_VISIBILITY_FILTER,
+  filter,
+});
