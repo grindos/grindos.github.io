@@ -21,7 +21,7 @@ class StreamsList extends Component {
       );
     }
     return (
-      <div className="StreamList">
+      <div className="StreamsList">
         {streams.map(stream => (
           <Stream
             key={stream.id}
