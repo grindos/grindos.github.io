@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import { SHOW_ALL, SHOW_ONLINE, SHOW_OFFLINE } from '../../../constants';
 
-const getStreams = state => state.streams;
-const getVisibilityFilter = state => state.visibilityFilter;
+const getStreams = state => state.streams.streams;
+const getVisibilityFilter = state => state.streams.visibilityFilter;
 
 export const getVisibleStreams = createSelector(
   [getVisibilityFilter, getStreams],
@@ -20,4 +20,4 @@ export const getVisibleStreams = createSelector(
   },
 );
 
-export const getLoading = state => state.loading;
+export const getLoading = state => state.streams.loading;
