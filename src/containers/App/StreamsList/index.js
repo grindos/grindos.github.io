@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import Stream from './Stream';
-import { loadStreamsData } from '../actions';
-import { getVisibleStreams, getLoading } from './selectors';
+import { loadStreamsData } from './actions';
+import { selectVisibleStreams, selectLoading } from './selectors';
 
 class StreamsList extends Component {
   componentDidMount() {
@@ -41,9 +42,9 @@ StreamsList.propTypes = {
   loading: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  streams: getVisibleStreams(state),
-  loading: getLoading(state),
+const mapStateToProps = createStructuredSelector({
+  streams: selectVisibleStreams,
+  loading: selectLoading,
 });
 
 const mapDispatchToProps = {

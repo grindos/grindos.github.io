@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
 import { SHOW_ALL, SHOW_ONLINE, SHOW_OFFLINE } from '../../../constants';
 
-const getStreams = state => state.streams.streams;
-const getVisibilityFilter = state => state.streams.visibilityFilter;
+const selectStreams = state => state.streams.streams;
+export const selectVisibilityFilter = state => state.streams.visibilityFilter;
 
-export const getVisibleStreams = createSelector(
-  [getVisibilityFilter, getStreams],
+export const selectVisibleStreams = createSelector(
+  [selectVisibilityFilter, selectStreams],
   (visibilityFilter, streams) => {
     switch (visibilityFilter) {
       case SHOW_ALL:
@@ -20,4 +20,4 @@ export const getVisibleStreams = createSelector(
   },
 );
 
-export const getLoading = state => state.streams.loading;
+export const selectLoading = state => state.streams.loading;

@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setVisibilityFilter } from '../../actions';
+import { createStructuredSelector } from 'reselect';
+
+import { setVisibilityFilter } from '../../StreamsList/actions';
+import { selectVisibilityFilter } from '../../StreamsList/selectors';
 
 const StatusOption = ({ onClick, children, filter, currentFilter }) => (
   <button
@@ -24,8 +27,8 @@ StatusOption.propTypes = {
   currentFilter: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
-  currentFilter: state.streams.visibilityFilter,
+const mapStateToProps = createStructuredSelector({
+  currentFilter: selectVisibilityFilter,
 });
 
 const mapDispatchToProps = {

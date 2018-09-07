@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_VISIBILITY_FILTER, LOAD_STREAMS_DATA } from '../../constants';
+import { SET_VISIBILITY_FILTER, LOAD_STREAMS_DATA } from '../../../constants';
 
 export const loadStreamsData = streams => {
   const data = streams.map(stream => Promise.all([
